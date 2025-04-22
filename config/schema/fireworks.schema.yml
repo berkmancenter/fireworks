@@ -1,0 +1,29 @@
+fireworks.fireworks_accordion.*:
+  type: config_entity
+  label: 'Fireworks Accordion'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    items:
+      type: sequence
+      label: 'Items'
+      sequence:
+        type: mapping
+        mapping:
+          title:
+            type: string
+            label: 'Title'
+          content:
+            type: mapping
+            label: 'Content'
+            mapping:
+              value:
+                type: text
+                label: 'Content value'
+              format:
+                type: string
+                label: 'Text format'

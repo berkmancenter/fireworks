@@ -1,0 +1,20 @@
+{
+  "name": "berkmancenter/fireworks",
+  "description": "Provides configurable content elements for Drupal.",
+  "type": "drupal-module",
+  "authors": [
+    {
+      "name": "Berkman Klein Center for Internet & Society",
+      "email": "geeks@cyber.harvard.edu"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "drupal/core": "^10"
+  },
+  "autoload": {
+    "psr-4": {
+      "Drupal\\fireworks\\": "src/"
+    }
+  }
+}

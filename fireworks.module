@@ -1,0 +1,88 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Fireworks module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function fireworks_theme() {
+  return [
+    'fireworks_accordion' => [
+      'variables' => [
+        'items' => [],
+      ],
+      'template' => 'accordion',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_library_info_build().
+ */
+function fireworks_library_info_build() { // Fixed hook name
+  $libraries = [];
+  $libraries['accordion'] = [
+    'version' => '1.0',
+    'css' => [
+      'theme' => [
+        'css/accordion.css' => [],
+      ],
+    ],
+    'js' => [
+      'js/accordion.js' => [],
+    ],
+    'dependencies' => [
+      'core/jquery',
+      'core/drupal',
+      'core/jquery.once',
+    ],
+  ];
+  return $libraries;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function fireworks_preprocess_node(&$variables) {
+  $node = $variables['node'];
+
+  if ($node->hasField('body') && isset($variables['content']['body'])) {
+    $text = $node->body->value;
+
+    // Process all accordion tags
+    $text = preg_replace_callback('/###ACCORDION_([^#]+)###/i', function($match) {
+      $accordion_id = strtolower($match[1]);
+
+      $accordion = \Drupal::entityTypeManager()
+        ->getStorage('fireworks_accordion')
+        ->load($accordion_id);
+
+      if ($accordion) {
+        $render = [
+          '#theme' => 'fireworks_accordion',
+          '#items' => $accordion->getItems(),
+          '#attached' => [
+            'library' => ['fireworks/accordion'],
+          ],
+        ];
+
+        return \Drupal::service('renderer')->render($render);
+      }
+
+      // Return the original match if no accordion was found
+      return $match[0];
+    }, $text);
+
+    // Update the node body
+    $node->body->value = $text;
+
+    // Call the callback with the rendered text
+    $callback = 'fireworks_preprocess_node_callback';
+    if (function_exists($callback)) {
+      $callback($variables, $text);
+    }
+  }
+}

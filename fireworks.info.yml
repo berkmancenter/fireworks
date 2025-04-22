@@ -1,0 +1,7 @@
+name: Fireworks
+type: module
+description: 'Provides configurable content elements.'
+package: Custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:field_ui

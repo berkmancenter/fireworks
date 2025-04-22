@@ -1,0 +1,31 @@
+entity.fireworks_accordion.collection:
+  path: '/admin/structure/fireworks/accordions'
+  defaults:
+    _controller: '\Drupal\fireworks\Controller\FireworksController::listing'
+    _title: 'List accordions'
+  requirements:
+    _permission: 'administer fireworks'
+
+entity.fireworks_accordion.add_form:
+  path: '/admin/structure/fireworks/accordions/add'
+  defaults:
+    _entity_form: 'fireworks_accordion.add'
+    _title: 'Add accordion'
+  requirements:
+    _permission: 'administer fireworks'
+
+entity.fireworks_accordion.edit_form:
+  path: '/admin/structure/fireworks/accordions/{fireworks_accordion}/edit'
+  defaults:
+    _entity_form: 'fireworks_accordion.edit'
+    _title: 'Edit accordion'
+  requirements:
+    _permission: 'administer fireworks'
+
+entity.fireworks_accordion.delete_form:
+  path: '/admin/structure/fireworks/accordions/{fireworks_accordion}/delete'
+  defaults:
+    _entity_form: 'fireworks_accordion.delete'
+    _title: 'Delete accordion'
+  requirements:
+    _permission: 'administer fireworks'

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an accordion.
+ *
+ * Available variables:
+ * - items: The accordion items.
+ */
+#}
+<div class="fireworks-accordion-container">
+  {% for item in items %}
+    <p>
+      <button class="fireworks-accordion-button">{{ item.title }}</button>
+    </p>
+    <div class="fireworks-accordion-content">
+      {{ item.content.value|raw }}
+    </div>
+  {% endfor %}
+</div>

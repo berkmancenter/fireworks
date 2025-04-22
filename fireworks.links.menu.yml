@@ -1,0 +1,5 @@
+fireworks.admin:
+  title: 'Accordions'
+  parent: system.admin_structure
+  route_name: entity.fireworks_accordion.collection
+  description: 'Manage accordions'

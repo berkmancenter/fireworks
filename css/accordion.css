@@ -1,0 +1,44 @@
+.fireworks-accordion-container {
+  margin: 1.25rem 0;
+  width: 100%;
+}
+
+.fireworks-accordion-button {
+  background-color: #f1f1f1;
+  color: #444444;
+  cursor: pointer;
+  padding: 0.625rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  font-weight: bold;
+  position: relative;
+}
+
+.fireworks-accordion-button:after {
+  content: '+';
+  position: absolute;
+  right: 1.25rem;
+}
+
+.fireworks-accordion-button.fireworks-accordion-button-active:after {
+  content: '-';
+}
+
+.fireworks-accordion-button:hover {
+  background-color: #ddd;
+}
+
+.fireworks-accordion-button.fireworks-accordion-button-active {
+  background-color: #e7e7e7;
+}
+
+.fireworks-accordion-content {
+  padding: 0 1rem;
+  background-color: #ffffff;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
